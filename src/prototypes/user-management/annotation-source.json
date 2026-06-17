@@ -1,0 +1,183 @@
+{
+  "documentVersion": 1,
+  "format": "axhub-annotation-source",
+  "data": {
+    "version": 2,
+    "prototypeName": "user-management",
+    "pageId": "main",
+    "updatedAt": 1735660800000,
+    "nodes": [
+      {
+        "id": "page-header",
+        "index": 1,
+        "title": "页面头部",
+        "pageId": "main",
+        "locator": {
+          "selectors": ["[data-annotation-id=\"page-header\"]"],
+          "fingerprint": "header|data-annotation-id=page-header"
+        },
+        "color": "blue",
+        "aiPrompt": "说明页面头部的布局和功能",
+        "annotationText": "顶部导航栏，包含菜单按钮、页面标题和当前用户头像",
+        "hasMarkdown": false,
+        "images": [],
+        "updatedAt": 1735660800000,
+        "controls": []
+      },
+      {
+        "id": "search-box",
+        "index": 2,
+        "title": "搜索框",
+        "pageId": "main",
+        "locator": {
+          "selectors": ["[data-annotation-id=\"search-box\"]"],
+          "fingerprint": "div|data-annotation-id=search-box"
+        },
+        "color": "green",
+        "aiPrompt": "说明搜索功能的实现逻辑",
+        "hasMarkdown": true,
+        "images": [],
+        "updatedAt": 1735660800000,
+        "controls": []
+      },
+      {
+        "id": "add-user-button",
+        "index": 3,
+        "title": "添加用户按钮",
+        "pageId": "main",
+        "locator": {
+          "selectors": ["[data-annotation-id=\"add-user-button\"]"],
+          "fingerprint": "button|data-annotation-id=add-user-button"
+        },
+        "color": "purple",
+        "aiPrompt": "说明添加用户的交互流程",
+        "annotationText": "点击后打开侧边抽屉，显示用户创建表单",
+        "hasMarkdown": false,
+        "images": [],
+        "updatedAt": 1735660800000,
+        "controls": []
+      },
+      {
+        "id": "user-table",
+        "index": 4,
+        "title": "用户列表表格",
+        "pageId": "main",
+        "locator": {
+          "selectors": ["[data-annotation-id=\"user-table\"]"],
+          "fingerprint": "div|data-annotation-id=user-table"
+        },
+        "color": "blue",
+        "aiPrompt": "说明用户列表的数据结构和展示逻辑",
+        "hasMarkdown": true,
+        "images": [],
+        "updatedAt": 1735660800000,
+        "controls": [
+          {
+            "type": "segmented",
+            "key": "list_state",
+            "label": "列表状态",
+            "defaultValue": "filled",
+            "options": [
+              { "label": "有数据", "value": "filled" },
+              { "label": "空状态", "value": "empty" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "table-actions",
+        "index": 5,
+        "title": "操作列",
+        "pageId": "main",
+        "locator": {
+          "selectors": ["tbody tr:first-child [data-annotation-id=\"table-actions\"]"],
+          "fingerprint": "td|data-annotation-id=table-actions"
+        },
+        "color": "orange",
+        "aiPrompt": "说明表格操作按钮的功能",
+        "annotationText": "提供编辑和删除功能。编辑打开侧边抽屉，删除弹出确认对话框。每行都有编辑和删除按钮。",
+        "hasMarkdown": false,
+        "images": [],
+        "updatedAt": 1735660800000,
+        "controls": []
+      },
+      {
+        "id": "edit-drawer",
+        "index": 6,
+        "title": "编辑抽屉",
+        "pageId": "main",
+        "locator": {
+          "selectors": ["[data-annotation-id=\"edit-drawer\"]"],
+          "fingerprint": "div|data-annotation-id=edit-drawer"
+        },
+        "color": "purple",
+        "aiPrompt": "说明用户编辑表单的字段和验证规则",
+        "hasMarkdown": true,
+        "images": [],
+        "updatedAt": 1735660800000,
+        "controls": []
+      },
+      {
+        "id": "role-field",
+        "index": 7,
+        "title": "角色字段",
+        "pageId": "main",
+        "locator": {
+          "selectors": ["[data-annotation-id=\"role-field\"]"],
+          "fingerprint": "div|data-annotation-id=role-field"
+        },
+        "color": "green",
+        "aiPrompt": "说明角色权限体系",
+        "hasMarkdown": true,
+        "images": [],
+        "updatedAt": 1735660800000,
+        "controls": []
+      }
+    ]
+  },
+  "markdownMap": {
+    "search-box": "# 搜索功能\n\n## 搜索范围\n\n- 用户姓名（不区分大小写）\n- 用户邮箱（不区分大小写）\n\n## 交互行为\n\n- 实时过滤，无需点击搜索按钮\n- 输入内容后立即更新表格显示\n- 未找到匹配结果时表格为空\n\n## 实现细节\n\n使用 `Array.filter()` 方法对 `users` 数组进行过滤，匹配逻辑为包含关系（substring match）。",
+    "user-table": "# 用户列表表格\n\n## 数据字段\n\n| 字段 | 说明 | 类型 |\n|------|------|------|\n| 用户 | 头像 + 姓名 | string |\n| 邮箱 | 用户邮箱地址 | string |\n| 角色 | 管理员/成员/访客 | enum |\n| 状态 | 活跃/停用 | enum |\n| 加入时间 | 相对时间描述 | string |\n| 操作 | 编辑、删除按钮 | actions |\n\n## 状态说明\n\n### 空状态\n\n当用户列表为空或搜索无结果时，显示空状态提示。\n\n### 有数据状态\n\n显示完整的用户列表，支持所有交互操作。\n\n## 排序逻辑\n\n当前版本未实现排序功能，按数据源顺序展示。",
+    "edit-drawer": "# 编辑抽屉\n\n## 使用场景\n\n1. **添加用户**：点击\"+ 添加用户\"按钮\n2. **编辑用户**：点击表格行的\"编辑\"按钮\n\n## 表单字段\n\n- **姓名**：必填，文本输入\n- **邮箱**：必填，邮箱格式验证\n- **角色**：必选，下拉选择（管理员/成员/访客）\n- **状态**：必选，单选框（活跃/停用）\n\n## 交互逻辑\n\n- 点击\"保存\"按钮提交表单\n- 点击\"取消\"或遮罩层关闭抽屉\n- 添加用户时，新用户添加到列表末尾\n- 编辑用户时，更新现有用户数据\n\n## 验证规则\n\n当前版本未实现前端验证，保存前应确保：\n- 姓名和邮箱不为空\n- 邮箱格式正确",
+    "role-field": "# 角色权限体系\n\n## 角色类型\n\n### 管理员（Admin）\n\n- 拥有所有权限\n- 可以管理所有用户\n- 可以修改系统设置\n\n### 成员（Member）\n\n- 标准用户权限\n- 可以查看和编辑自己的信息\n- 不能管理其他用户\n\n### 访客（Guest）\n\n- 只读权限\n- 可以查看有限的信息\n- 不能进行任何编辑操作\n\n## 权限控制\n\n当前原型未实现权限校验逻辑，所有操作对所有用户可见。生产环境需要根据当前登录用户的角色动态控制按钮和功能的可见性。"
+  },
+  "assetMap": {},
+  "directory": {
+    "nodes": [
+      {
+        "type": "folder",
+        "id": "user-management-folder",
+        "title": "用户管理原型",
+        "defaultExpanded": true,
+        "children": [
+          {
+            "type": "markdown",
+            "id": "overview",
+            "title": "功能概述",
+            "markdown": "# 用户管理原型\n\n这是一个企业级用户管理系统的原型界面，展示了用户列表、搜索、添加、编辑和删除等核心功能。\n\n## 主要功能\n\n- 用户列表展示\n- 实时搜索过滤\n- 添加新用户\n- 编辑用户信息\n- 删除用户（带确认）\n- 角色权限管理\n- 用户状态切换\n\n## 技术实现\n\n- React + TypeScript\n- 本地状态管理（useState）\n- 响应式布局\n- 侧边抽屉交互\n\n## 查看隐藏标注\n\n标注 6-7（编辑抽屉、角色字段）需要点击表格中任意用户的编辑按钮后才会显示。"
+          },
+          {
+            "type": "route",
+            "id": "route-filled",
+            "title": "查看有数据状态",
+            "route": "main",
+            "payload": { "list_state": "filled" }
+          },
+          {
+            "type": "route",
+            "id": "route-empty",
+            "title": "查看空状态",
+            "route": "main",
+            "payload": { "list_state": "empty" }
+          },
+          {
+            "type": "markdown",
+            "id": "future-improvements",
+            "title": "后续优化方向",
+            "markdown": "# 后续优化方向\n\n## 功能增强\n\n1. **批量操作**\n   - 批量删除用户\n   - 批量修改角色\n   - 批量导出\n\n2. **高级筛选**\n   - 按角色筛选\n   - 按状态筛选\n   - 按加入时间排序\n\n3. **分页功能**\n   - 数据量大时的分页展示\n   - 每页条数设置\n\n4. **权限控制**\n   - 基于当前用户角色的权限校验\n   - 不同角色看到不同操作按钮\n\n5. **表单验证**\n   - 实时字段验证\n   - 错误提示\n   - 重复邮箱检测\n\n## 用户体验\n\n- 加载状态提示\n- 操作成功/失败反馈\n- 键盘快捷键支持\n- 响应式设计优化"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "server": {
+    "host": "localhost",
+    "allowLAN": true,
+    "enableCommandAPI": false
+  },
+  "projectDefaults": {
+    "defaultTheme": "vercel"
+  },
+  "projectInfo": {
+    "description": null
+  },
+  "cloudPublishing": {
+    "vercel": {
+      "token": "",
+      "projectName": "",
+      "teamId": ""
+    },
+    "cloudflarePages": {
+      "apiToken": "",
+      "accountId": "",
+      "projectName": "",
+      "productionBranch": "main"
+    },
+    "s3": {
+      "accessKeyId": "",
+      "secretAccessKey": "",
+      "region": "",
+      "bucket": "",
+      "prefix": "",
+      "baseUrl": "",
+      "endpoint": ""
+    },
+    "githubPages": {
+      "repository": "antmoonSu/d",
+      "branch": "gh-pages",
+      "sourceDirectory": "/"
+    },
+    "publishSettings": {
+      "includeSource": false
+    }
+  }
+}
