@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>供应商管理系统</title>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -19,6 +17,25 @@
 </head>
 <body>
   <div id="root"></div>
-  <script src="./prototypes/supplier-management.js"></script>
+
+  <!-- Load React from CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Load the app after React is ready -->
+  <script>
+    // Wait for React to be available
+    if (typeof React !== 'undefined' && typeof ReactDOM !== 'undefined') {
+      // Create a script element to load the app
+      var script = document.createElement('script');
+      script.src = './prototypes/supplier-management.js';
+      script.onerror = function() {
+        document.getElementById('root').innerHTML = '<div style="padding: 40px; text-align: center;"><h1>加载失败</h1><p>无法加载供应商管理系统</p></div>';
+      };
+      document.body.appendChild(script);
+    } else {
+      document.getElementById('root').innerHTML = '<div style="padding: 40px; text-align: center;"><h1>加载失败</h1><p>React 未正确加载</p></div>';
+    }
+  </script>
 </body>
 </html>
