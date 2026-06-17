@@ -22,10 +22,7 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-  <!-- Load the component -->
-  <script src="./prototypes/supplier-management.js"></script>
-
-  <!-- Render the component -->
+  <!-- Setup component registration handler -->
   <script>
     (function() {
       const rootElement = document.getElementById('root');
@@ -40,15 +37,21 @@
         return;
       }
 
-      if (typeof UserComponent === 'undefined') {
-        rootElement.innerHTML = '<div style="padding: 40px; text-align: center;"><h1>加载失败</h1><p>组件未正确加载</p></div>';
-        return;
-      }
+      // Wait for component registration via __AXHUB_DEFINE_COMPONENT__
+      let UserComponent = null;
+      window.__AXHUB_DEFINE_COMPONENT__ = function(component) {
+        UserComponent = component;
 
-      // Create root and render
-      const root = ReactDOM.createRoot(rootElement);
-      root.render(React.createElement(UserComponent));
+        // Render immediately after component is registered
+        if (UserComponent) {
+          const root = ReactDOM.createRoot(rootElement);
+          root.render(React.createElement(UserComponent));
+        }
+      };
     })();
   </script>
+
+  <!-- Load the component (will call __AXHUB_DEFINE_COMPONENT__) -->
+  <script src="./prototypes/supplier-management.js"></script>
 </body>
 </html>
